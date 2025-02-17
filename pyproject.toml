@@ -5,6 +5,11 @@ build-backend = "hatchling.build"
 [project]
 name = "python_test"
 version = "0.0.1"
+description = "A brief description of your project"
+readme = "README.md"
+license = { text = "MIT" }
+authors = [{ name = "Borjan Sazdov", email = "borjansazdov@yahoo.com" }]
+maintainers = [{ name = "Maintainer Name", email = "borjansazdov@yahoo.com" }]
 requires-python = ">=3.9"
 classifiers = [
     "Programming Language :: Python :: 3",
@@ -16,9 +21,11 @@ dependencies = [
     "openai>=1.37.1",
     "pydantic>=2.7.3",
     "instructor>=1.3.7",
-    "python-dotenv>=1.0.1"
+    "python-dotenv>=1.0.1",
     "boto3==1.34.138"
 ]
+optional-dependencies = { dev = ["pytest", "black"] }
+urls = { Homepage = "https://emteqlabs.com" }
 
 [tool.hatch.metadata]
 allow-direct-references = true
