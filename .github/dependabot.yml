@@ -13,3 +13,18 @@ updates:
     directory: "/ruby"
     schedule:
       interval: "weekly"
+  - package-ecosystem: "pip"
+    directory: "/" # If pyproject.toml is in the root, otherwise specify the correct path
+    schedule:
+      interval: "daily" # Can be "weekly" or "monthly"
+    versioning-strategy: "increase-if-necessary"
+    commit-message:
+      prefix: "chore(deps)"
+      include: "scope"
+    open-pull-requests-limit: 10
+    reviewers:
+      - "borjansz" # Optional: Assign PRs to yourself or a team
+    labels:
+      - "dependencies"
+    rebase-strategy: "auto"
+
