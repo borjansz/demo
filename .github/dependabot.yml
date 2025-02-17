@@ -27,4 +27,12 @@ updates:
     labels:
       - "dependencies"
     rebase-strategy: "auto"
+    groups:
+      all-python-dependencies:
+        patterns:
+          - "*"  # This groups all dependencies together in one PR
+        update-types:
+          - "minor"
+          - "patch"
+
 
