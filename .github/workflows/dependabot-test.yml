@@ -30,4 +30,4 @@ jobs:
           pip install -e .
           pip install pytest  # If not using Poetry
       - name: Run tests
-        run: pytest tests/
+        run: pytest src/python_test/tests/
