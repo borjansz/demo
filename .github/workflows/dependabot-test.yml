@@ -1,0 +1,31 @@
+name: Dependabot Test Runner
+
+on:
+  pull_request_target:
+    branches:
+      - main
+    types:
+      - opened
+      - synchronize
+      - reopened
+    paths:
+      - "pyproject.toml"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"  # Adjust based on your project
+
+      - name: Install dependencies
+        run: |
+          pip install -e .
+          pip install pytest  # If not using Poetry
+      - name: Run tests
+        run: pytest tests/
