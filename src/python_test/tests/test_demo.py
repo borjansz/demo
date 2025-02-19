@@ -17,7 +17,7 @@ def test_demo_function():
     assert isinstance(result, dict), "Function should return a dictionary"
     assert result, "The dictionary should not be empty"
 
-        # Get API key from environment
+    # Get API key from environment
     api_key = os.getenv("OPENAI_API_KEY")
     assert api_key, "OPENAI_API_KEY is not set"
 
