@@ -32,6 +32,13 @@ jobs:
           pip install -e .
           pip install pytest
           pip install boto3==1.34.138
+      - name: Verify OPENAI_API_KEY
+        run: |
+          if [ -z "${{ secrets.OPENAI_API_KEY }}" ]; then
+            echo "OPENAI_API_KEY is not set!"
+            exit 1
+          else
+            echo "OPENAI_API_KEY is available."
+          fi
       - name: Run tests
         run: OPENAI_API_KEY=${{ secrets.OPENAI_API_KEY }} pytest src/python_test/tests/
-        
