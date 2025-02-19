@@ -18,7 +18,7 @@ def test_demo_function():
     assert result, "The dictionary should not be empty"
 
     # Get API key from environment
-    api_key = os.environ("OPENAI_API_KEY")
+    api_key = os.environ["OPENAI_API_KEY"]
     assert api_key, "OPENAI_API_KEY is not set"
 
 
