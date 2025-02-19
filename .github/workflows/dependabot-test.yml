@@ -24,7 +24,6 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"  # Adjust based on your project
-
       - name: Install dependencies
         run: |
           pip install -e .
