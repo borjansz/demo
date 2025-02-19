@@ -1,4 +1,4 @@
-name: Dependabot Test Runner
+name: PR Inference Checks
 
 on:
   pull_request_target:
@@ -10,12 +10,16 @@ on:
       - reopened
     paths:
       - "pyproject.toml"
+  workflow_dispatch:
+
+env:
+  OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Dependabot PR Branch
+      - name: Checkout PR Branch
         uses: actions/checkout@v4
         with:
           ref: ${{ github.event.pull_request.head.ref }}  # This ensures checkout to the PR branch
@@ -28,6 +32,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -e .
-          pip install pytest  # If not using Poetry
+          pip install pytest
+          pip install boto3==1.34.138
       - name: Run tests
         run: pytest src/python_test/tests/
+        
