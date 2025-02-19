@@ -1,7 +1,11 @@
 name: Dependabot Test Runner
 
+permissions:
+  contents: read
+  pull-requests: write
+
 on:
-  pull_request_target:
+  pull_request:
     branches:
       - main
     types:
@@ -18,9 +22,6 @@ jobs:
     steps:
       - name: Checkout Dependabot PR Branch
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}  # This ensures checkout to the PR branch
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -28,6 +29,8 @@ jobs:
       - name: Install dependencies
         run: |
           pip install -e .
-          pip install pytest  # If not using Poetry
+          pip install pytest
       - name: Run tests
         run: pytest src/python_test/tests/
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
